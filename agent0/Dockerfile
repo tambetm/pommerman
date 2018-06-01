@@ -6,7 +6,7 @@ RUN pip install git+https://github.com/MultiAgentLearning/playground.git
 
 EXPOSE 10080
 
-ENV NAME Agent
+ENV NAME FlegmaticAgent
 
 # Run app.py when the container launches
 WORKDIR /agent

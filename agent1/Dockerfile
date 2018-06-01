@@ -15,12 +15,15 @@ RUN pip install git+https://github.com/MultiAgentLearning/playground.git
 
 ADD . /agent
 
-#RUN python -c "from keras.models import load_model; load_model("modelAlpha_No_Discount_tuned_MCTS_300K_balanced_93.h5")"
-
 EXPOSE 10080
 
-ENV NAME Agent
+ENV NAME CrappyAgent1
 
 WORKDIR /agent
+
+# Precompiles the model. Should be built with nvidia as the default runtime, otherwise it won't work.
+# Could be also skipped, but then the timeout in pom_battle should be increased.
+RUN python -c "from keras.models import load_model; load_model('modelAlpha_No_Discount_tuned_MCTS_300K_balanced_93.h5')"
+
 ENTRYPOINT ["python"]
 CMD ["run.py"]
